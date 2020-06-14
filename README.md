@@ -1,68 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Dockerized React App - MultiStage
 
-## Available Scripts
+This repository demonstrates how to bootstrap a React app using create-react-app and add Docker container and using ENV variables.
 
-In the project directory, you can run:
+## Requirements
+In order to test the Docker container you need to be able to perform `docker` commands. Familiarity with building and running images is preferred.
 
-### `yarn start`
+### Setup
+```
+1. Run application development
+  docker-compose up
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. run build application production
+  docker-compose -f docker-compose.prod.yml up -d --build
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Shell Script
 
-### `yarn test`
+Thinking of facilitating a way to run the scripts inside a pipeline, I created a shell file where it runs based on the parameter that is passed.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+1. To start the development environment use:
+  ./run-app-deploy.sh --dev
 
-### `yarn build`
+2. To deploy in a development environment use:
+  ./run-app-deploy.sh --prod
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+If there is a problem running the run-app-deploy.sh file, it is possibly due to the permission, if so, give the file permission to run.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```
+chmod +x run-app-deploy.sh
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+There, it's done. With these settings, you can integrate your project using React JS with docker, both for development and production. :)
