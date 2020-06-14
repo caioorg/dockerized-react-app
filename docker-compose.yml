@@ -1,0 +1,19 @@
+version: '3'
+services:
+  client:
+    image: client
+    container_name: client
+    build:
+      context: .
+      dockerfile: ./dockers/Dockerfile.dev
+    volumes:
+      - /usr/src/app/node_modules
+      - ./:/usr/src/app
+    env_file:
+      - ./environment/env.local
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    stdin_open: true
+
